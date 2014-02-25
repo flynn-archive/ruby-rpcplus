@@ -1,5 +1,2 @@
-require "rpcplus/version"
-
-module RPCPlus
-  # Your code goes here...
-end
+require "rpcplus/client"
+require "rpcplus/response"
