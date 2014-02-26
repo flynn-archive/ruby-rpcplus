@@ -1,6 +1,6 @@
 # RPCPlus
 
-TODO: Write a gem description
+A Flynn RPCPlus client for Ruby.
 
 ## Installation
 
