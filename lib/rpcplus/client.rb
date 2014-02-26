@@ -46,7 +46,7 @@ module RPCPlus
           req[:stream].call(response['result'])
           next
         end
-        req[:future].signal(Response.new(response))
+        req[:future].signal(Response.new(response["result"]))
         @requests.delete(response['id'])
       end
     end
