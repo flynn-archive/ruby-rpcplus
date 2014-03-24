@@ -10,7 +10,12 @@ module RPCPlus
       @seq = 0
       @requests = {}
 
-      @sock = Celluloid::IO::TCPSocket.new(host, port)
+      begin
+        @sock = Celluloid::IO::TCPSocket.new(host, port)
+      rescue Errno::ECONNREFUSED
+        raise ServiceUnavailable
+      end
+
       @sock.write("CONNECT /_goRPC_ HTTP/1.0\r\nAccept: application/vnd.flynn.rpc-hijack+json\r\n\r\n")
       response = @sock.readline(/\r?\n/)
       raise 'invalid response' if !response.start_with?('HTTP/1.0 200')
